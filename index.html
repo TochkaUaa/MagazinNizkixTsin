@@ -1,386 +1,433 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Магазин низьких цін — Стильний одяг</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        .bg-custom-yellow { background-color: #ffd700; }
-        .text-custom-yellow { color: #ffd700; }
-        .border-custom-yellow { border-color: #ffd700; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Магазин низьких цін</title>
+<meta name="description" content="Одяг, кросівки, сумки та білизна за низькими цінами.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+
+<!-- ╔══════════════════════════════════════════════════════════════╗
+     ║  1) RASMLAR (IMG) — SHU YERDA YOZIB QO'YILADI               ║
+     ║  Rasmlarni repozitoriydagi "img" papkasiga yuklang,          ║
+     ║  keyin pastdagi yo'llarni o'zgartiring. Bo'sh qoldirsangiz   ║
+     ║  — joyida sariq "IMG" blok ko'rinadi.                        ║
+     ╚══════════════════════════════════════════════════════════════╝ -->
+<script>
+const IMG = {
+  logo:   "img/logo.png",          // логотип
+  hero:   "img/hero.jpg",          // головне фото зверху
+
+  // категорії
+  cat_clothes:   "img/cat-clothes.jpg",
+  cat_shoes:     "img/cat-shoes.jpg",
+  cat_bags:      "img/cat-bags.jpg",
+  cat_underwear: "img/cat-underwear.jpg",
+
+  // товари (p1 ... p12)
+  p1:  "img/p1.jpg",   p2:  "img/p2.jpg",   p3:  "img/p3.jpg",   p4:  "img/p4.jpg",
+  p5:  "img/p5.jpg",   p6:  "img/p6.jpg",   p7:  "img/p7.jpg",   p8:  "img/p8.jpg",
+  p9:  "img/p9.jpg",   p10: "img/p10.jpg",  p11: "img/p11.jpg",  p12: "img/p12.jpg"
+};
+
+/* 2) KONTAKTLAR — o'zingiznikiga almashtiring */
+const CONTACT = {
+  phone: "+380 00 000 00 00",
+  telegram: "https://t.me/your_shop",
+  instagram: "https://instagram.com/your_shop",
+  address: { ua: "м. Київ, вул. Прикладна, 1", ru: "г. Киев, ул. Примерная, 1", en: "1 Example St., Kyiv" }
+};
+
+/* 3) TOVARLAR — nomi 3 tilda, narxi ₴ (грн) da */
+const PRODUCTS = [
+  { id:"p1",  cat:"clothes",   price:699, ua:"Худі оверсайз",        ru:"Худи оверсайз",         en:"Oversized hoodie" },
+  { id:"p2",  cat:"clothes",   price:899, ua:"Джинси прямого крою",  ru:"Джинсы прямого кроя",   en:"Straight-fit jeans" },
+  { id:"p3",  cat:"clothes",   price:299, ua:"Футболка базова",      ru:"Футболка базовая",      en:"Basic T-shirt" },
+  { id:"p4",  cat:"clothes",   price:1299,ua:"Куртка демісезонна",   ru:"Куртка демисезонная",   en:"Light jacket" },
+  { id:"p5",  cat:"shoes",     price:1499,ua:"Кросівки Classic",     ru:"Кроссовки Classic",     en:"Classic sneakers" },
+  { id:"p6",  cat:"shoes",     price:1699,ua:"Кросівки для бігу",    ru:"Кроссовки для бега",    en:"Running sneakers" },
+  { id:"p7",  cat:"shoes",     price:799, ua:"Кеди",                 ru:"Кеды",                  en:"Canvas shoes" },
+  { id:"p8",  cat:"bags",      price:549, ua:"Рюкзак міський",       ru:"Рюкзак городской",      en:"City backpack" },
+  { id:"p9",  cat:"bags",      price:399, ua:"Сумка через плече",    ru:"Сумка через плечо",     en:"Crossbody bag" },
+  { id:"p10", cat:"bags",      price:199, ua:"Шопер",                ru:"Шопер",                 en:"Tote bag" },
+  { id:"p11", cat:"underwear", price:249, ua:"Боксери, 3 шт.",       ru:"Боксеры, 3 шт.",        en:"Boxers, 3 pcs" },
+  { id:"p12", cat:"underwear", price:179, ua:"Шкарпетки, 5 пар",     ru:"Носки, 5 пар",          en:"Socks, 5 pairs" }
+];
+</script>
+
+<style>
+  :root{
+    --black:#000; --ink:#0d0d0d; --card:#161616; --line:#2a2a2a;
+    --yellow:#ffd60a; --white:#f5f5f0; --mute:#a8a8a0;
+    --r:6px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--black);color:var(--white);font-family:'Manrope',system-ui,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,.display{font-family:'Oswald','Arial Narrow',sans-serif;font-weight:700;text-transform:uppercase;line-height:1.02;letter-spacing:.01em}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  :focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
+  .wrap{width:min(1180px,92%);margin-inline:auto}
+
+  /* ── Ribbon ── */
+  .ribbon{background:var(--yellow);color:#000;overflow:hidden;white-space:nowrap;font-family:'Oswald',sans-serif;font-weight:700;text-transform:uppercase;font-size:.95rem;padding:.45rem 0}
+  .ribbon-track{display:inline-block;padding-left:100%;animation:run 28s linear infinite}
+  .ribbon-track span{margin-right:3rem}
+  @keyframes run{to{transform:translateX(-100%)}}
+
+  /* ── Header ── */
+  header.top{position:sticky;top:0;z-index:20;background:rgba(0,0,0,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .top-in{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.7rem 0}
+  .brand{display:flex;align-items:center;gap:.7rem;font-family:'Oswald',sans-serif;font-weight:700;text-transform:uppercase;font-size:1.15rem}
+  .brand .logo{width:42px;height:42px;border-radius:50%;overflow:hidden;background:var(--yellow);flex:none}
+  .brand .logo img{width:100%;height:100%;object-fit:cover}
+  nav.menu{display:flex;gap:1.6rem;font-weight:600;font-size:.95rem}
+  nav.menu a{color:var(--mute);transition:color .15s}
+  nav.menu a:hover{color:var(--yellow)}
+  .lang{display:flex;border:2px solid var(--yellow);border-radius:var(--r);overflow:hidden}
+  .lang button{background:transparent;color:var(--yellow);border:0;padding:.4rem .75rem;font:700 .85rem 'Oswald',sans-serif;letter-spacing:.05em;cursor:pointer}
+  .lang button[aria-pressed="true"]{background:var(--yellow);color:#000}
+  @media(max-width:760px){nav.menu{display:none}}
+
+  /* ── Hero ── */
+  .hero{position:relative;padding:clamp(2.5rem,7vw,6rem) 0 clamp(3rem,7vw,5rem);overflow:hidden}
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:2.5rem;align-items:center}
+  @media(max-width:860px){.hero-grid{grid-template-columns:1fr}}
+  .slant{transform:rotate(-6deg);transform-origin:left center}
+  .tag{display:inline-block;border:5px solid var(--yellow);padding:.15em .35em;margin-bottom:.15em}
+  .tag h1{font-size:clamp(2.2rem,6.2vw,4.6rem);color:var(--yellow)}
+  .big{font-family:'Oswald',sans-serif;font-weight:700;text-transform:uppercase;color:var(--yellow);font-size:clamp(2.8rem,9vw,7rem);line-height:.98}
+  .tag.solid{background:var(--yellow)}
+  .tag.solid h1{color:#000}
+  .hero p.lead{margin-top:2.4rem;max-width:34ch;color:var(--mute);font-size:1.1rem}
+  .btns{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.6rem}
+  .btn{display:inline-block;padding:.85rem 1.5rem;border-radius:var(--r);font:700 1rem 'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.04em;border:2px solid var(--yellow);transition:transform .15s,background .15s,color .15s}
+  .btn.primary{background:var(--yellow);color:#000}
+  .btn.primary:hover{transform:translateY(-2px)}
+  .btn.ghost{color:var(--yellow)}
+  .btn.ghost:hover{background:var(--yellow);color:#000}
+  .hero-img{aspect-ratio:4/5;border-radius:var(--r);overflow:hidden;border:2px solid var(--line)}
+
+  /* ── IMG placeholder ── */
+  .ph{background:repeating-linear-gradient(135deg,#1c1c1c 0 14px,#232323 14px 28px);display:grid;place-items:center;width:100%;height:100%;color:var(--yellow);font:700 1.4rem 'Oswald',sans-serif;letter-spacing:.1em}
+  .ph small{display:block;color:var(--mute);font:600 .75rem 'Manrope',sans-serif;letter-spacing:0;text-align:center;margin-top:.2rem}
+  .imgbox img{width:100%;height:100%;object-fit:cover}
+
+  /* ── Sections ── */
+  section{padding:clamp(3rem,7vw,5.5rem) 0}
+  .sec-head{display:flex;align-items:end;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:2rem}
+  .sec-head h2{font-size:clamp(2rem,5vw,3.4rem)}
+
+  /* categories */
+  .cats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+  @media(max-width:860px){.cats{grid-template-columns:repeat(2,1fr)}}
+  .cat{position:relative;aspect-ratio:3/4;border-radius:var(--r);overflow:hidden;border:2px solid var(--line);cursor:pointer;background:none;color:inherit;padding:0;text-align:left}
+  .cat .imgbox{position:absolute;inset:0}
+  .cat span{position:absolute;left:0;bottom:1rem;background:var(--yellow);color:#000;font:700 1.2rem 'Oswald',sans-serif;text-transform:uppercase;padding:.25rem .8rem;transform:rotate(-3deg) translateX(-.3rem)}
+  .cat:hover{border-color:var(--yellow)}
+
+  /* filters */
+  .filters{display:flex;flex-wrap:wrap;gap:.5rem}
+  .filters button{background:transparent;color:var(--white);border:2px solid var(--line);border-radius:999px;padding:.45rem 1.1rem;font:600 .9rem 'Manrope',sans-serif;cursor:pointer;transition:all .15s}
+  .filters button:hover{border-color:var(--yellow)}
+  .filters button[aria-pressed="true"]{background:var(--yellow);border-color:var(--yellow);color:#000}
+
+  /* products */
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem}
+  @media(max-width:1000px){.grid{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:700px){.grid{grid-template-columns:repeat(2,1fr);gap:.7rem}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;transition:border-color .15s,transform .15s}
+  .card:hover{border-color:var(--yellow);transform:translateY(-3px)}
+  .card .imgbox{aspect-ratio:1/1}
+  .card .body{padding:.9rem 1rem 1.1rem;display:flex;flex-direction:column;gap:.5rem;flex:1}
+  .card h3{font-size:1.15rem;text-transform:none;letter-spacing:0;font-weight:500}
+  .card .row{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:.5rem}
+  .price{font:700 1.5rem 'Oswald',sans-serif;color:var(--yellow)}
+  .card .buy{font:700 .8rem 'Oswald',sans-serif;text-transform:uppercase;background:var(--yellow);color:#000;padding:.4rem .8rem;border-radius:var(--r)}
+
+  /* why */
+  .why{background:var(--yellow);color:#000}
+  .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+  @media(max-width:800px){.why-grid{grid-template-columns:1fr}}
+  .why h2{font-size:clamp(2rem,5vw,3.4rem);margin-bottom:2rem}
+  .why h3{font-size:1.6rem;margin-bottom:.4rem}
+  .why p{font-weight:600;max-width:32ch}
+
+  /* contacts */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+  @media(max-width:800px){.contact-grid{grid-template-columns:1fr}}
+  .contact-list{display:grid;gap:.8rem;font-size:1.1rem}
+  .contact-list a,.contact-list div{display:flex;gap:.8rem;align-items:baseline;padding:.9rem 1rem;border:1px solid var(--line);border-radius:var(--r);background:var(--card)}
+  .contact-list a:hover{border-color:var(--yellow)}
+  .contact-list b{font:700 .9rem 'Oswald',sans-serif;text-transform:uppercase;color:var(--yellow);min-width:6.5rem}
+
+  footer{border-top:1px solid var(--line);padding:1.5rem 0;color:var(--mute);font-size:.9rem}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
+
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
 </head>
-<body class="bg-black text-white font-sans antialiased">
+<body>
 
-    <!-- HEADER / YUQORI QISM -->
-    <header class="sticky top-0 z-50 bg-black/95 backdrop-blur border-b border-zinc-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            
-            <!-- LOGOTIP -->
-            <div class="flex items-center space-x-3">
-                <div class="bg-custom-yellow text-black font-black px-3 py-1 transform -rotate-2 text-xl tracking-wider shadow-lg">
-                    МАГАЗИН НИЗЬКИХ ЦІН
-                </div>
-            </div>
+<div class="ribbon" aria-hidden="true"><div class="ribbon-track" id="ribbon"></div></div>
 
-            <!-- NAVIGATSIYA -->
-            <nav class="hidden md:flex space-x-8 text-sm font-medium">
-                <a href="#catalog" class="hover:text-custom-yellow transition" data-i18n="nav-catalog">Каталог</a>
-                <a href="#about" class="hover:text-custom-yellow transition" data-i18n="nav-about">Про нас</a>
-                <a href="#contacts" class="hover:text-custom-yellow transition" data-i18n="nav-contacts">Контакти</a>
-            </nav>
-
-            <!-- TIL ALISHTIRISH (UA | RUS | ENG) -->
-            <div class="flex items-center space-x-2">
-                <select id="langSwitch" onchange="changeLanguage(this.value)" class="bg-zinc-900 text-white border border-zinc-700 rounded px-2 py-1 text-sm focus:outline-none focus:border-custom-yellow">
-                    <option value="uk">UA</option>
-                    <option value="ru">RUS</option>
-                    <option value="en">ENG</option>
-                </select>
-            </div>
-        </div>
-    </header>
-
-    <!-- HERO SECTION (Yangi zamonaviy dizayn) -->
-    <section class="relative bg-zinc-950 py-24 overflow-hidden border-b border-zinc-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-                <span class="inline-block bg-custom-yellow text-black font-bold px-3 py-1 text-xs uppercase tracking-widest transform -rotate-1 mb-4" data-i18n="hero-badge">Ексклюзивні пропозиції</span>
-                <h1 class="text-4xl sm:text-6xl font-black tracking-tight mb-6 leading-none">
-                    <span class="block text-white" data-i18n="hero-title-1">ОДЯГ НА КОЖЕН ДЕНЬ</span>
-                    <span class="text-custom-yellow block mt-2 transform -skew-x-3" data-i18n="hero-title-2">ЗА НАЙНИЖЧИМИ ЦІНАМИ</span>
-                </h1>
-                <p class="text-zinc-400 text-lg mb-8 max-w-xl" data-i18n="hero-desc">
-                    Обирайте найкращі моделі безпосередньо в нашому магазині. Тільки якісний одяג, доступні ціни та широкий вибір розмірів.
-                </p>
-                <div class="flex space-x-4">
-                    <a href="#catalog" class="bg-custom-yellow text-black font-black px-8 py-4 hover:bg-yellow-400 transition transform hover:-translate-y-1 shadow-lg shadow-yellow-500/10 text-center uppercase tracking-wider text-sm" data-i18n="hero-btn">
-                        Дивитися каталог
-                    </a>
-                </div>
-            </div>
-            
-            <!-- IMG-HERO: Asosiy banner rasm -->
-            <div class="relative">
-                <div class="absolute -inset-1 bg-custom-yellow blur-2xl opacity-15"></div>
-                <div class="relative bg-zinc-900 border-2 border-custom-yellow p-3 transform rotate-1 shadow-2xl">
-                    <img src="IMG-HERO.png" alt="Магазин одягу" class="w-full h-[380px] object-cover cursor-pointer hover:opacity-95 transition" onclick="openModal(this.src)">
-                    <div class="mt-3 text-center font-bold text-custom-yellow tracking-wider text-xs">
-                        [ Вставте зображення: src="IMG_4777.png" ]
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- KATALOG SECTION (Faqat Narx va Razmerlar, Tugma yo'q) -->
-    <section id="catalog" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl sm:text-5xl font-black mb-4 uppercase tracking-wider" data-i18n="catalog-title">Каталог товарів</h2>
-            <div class="w-24 h-1.5 bg-custom-yellow mx-auto"></div>
-            <p class="text-zinc-400 mt-4 text-sm uppercase tracking-widest" data-i18n="catalog-subtitle">Наявні розміри та актуальні ціни</p>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            
-            <!-- MAHSULOT 1 -->
-            <div class="bg-zinc-900 border border-zinc-800 hover:border-custom-yellow transition duration-300 flex flex-col justify-between">
-                <div>
-                    <div class="relative overflow-hidden bg-zinc-950 h-72">
-                        <!-- IMG-1 -->
-                        <img src="IMG-1.png" alt="Product 1" class="w-full h-full object-cover cursor-pointer hover:scale-105 transition duration-500" onclick="openModal(this.src)">
-                        <span class="absolute top-2 left-2 bg-custom-yellow text-black text-xs font-black px-2 py-1 uppercase">HOT</span>
-                    </div>
-                    <div class="p-5">
-                        <span class="text-xs text-zinc-500 uppercase tracking-wider" data-i18n="prod-1-cat">Чоловічий одяг</span>
-                        <h3 class="font-bold text-lg mt-1 mb-3 text-white">Базова футболка oversize</h3>
-                        
-                        <!-- RAZMERLAR -->
-                        <div class="mb-4">
-                            <span class="text-xs text-zinc-400 block mb-1.5 uppercase font-semibold" data-i18n="sizes-label">Розміри:</span>
-                            <div class="flex flex-wrap gap-1.5">
-                                <span class="border border-zinc-700 bg-zinc-950 text-zinc-300 text-xs px-2.5 py-1 font-mono">S</span>
-                                <span class="border border-zinc-700 bg-zinc-950 text-zinc-300 text-xs px-2.5 py-1 font-mono">M</span>
-                                <span class="border border-zinc-700 bg-zinc-950 text-zinc-300 text-xs px-2.5 py-1 font-mono">L</span>
-                                <span class="border border-zinc-700 bg-zinc-950 text-zinc-300 text-xs px-2.5 py-1 font-mono">XL</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- NARX -->
-                <div class="px-5 pb-5 pt-2 border-t border-zinc-800/80 flex items-center justify-between">
-                    <span class="text-xs text-zinc-500 uppercase" data-i18n="price-label">Ціна:</span>
-                    <span class="text-custom-yellow font-black text-2xl tracking-tight">250 грн</span>
-                </div>
-            </div>
-
-            <!-- MAHSULOT 2 -->
-            <div class="bg-zinc-900 border border-zinc-800 hover:border-custom-yellow transition duration-300 flex flex-col justify-between">
-                <div>
-                    <div class="relative overflow-hidden bg-zinc-950 h-72">
-                        <!-- IMG-2 -->
-                        <img src="IMG-2.png" alt="Product 2" class="w-full h-full object-cover cursor-pointer hover:scale-105 transition duration-500" onclick="openModal(this.src)">
-                    </div>
-                    <div class="p-5">
-                        <span class="text-xs text-zinc-500 uppercase tracking-wider" data-i18n="prod-2-cat">Унісекс</span>
-                        <h3 class="font-bold text-lg mt-1 mb-3 text-white">Худі класичне утеплене</h3>
-                        
-                        <!-- RAZMERLAR -->
-                        <div class="mb-4">
-                            <span class="text-xs text-zinc-400 block mb-1.5 uppercase font-semibold" data-i18n="sizes-label">Розміри:</span>
-                            <div class="flex flex-wrap gap-1.5">
-                                <span class="border border-zinc-700 bg-zinc-950 text-zinc-300 text-xs px-2.5 py-1 font-mono">M</span>
-                                <span class="border border-zinc-700 bg-zinc-950 text-zinc-300 text-xs px-2.5 py-1 font-mono">L</span>
-                                <span class="border border-zinc-700 bg-zinc-950 text-zinc-300 text-xs px-2.5 py-1 font-mono">XL</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- NARX -->
-                <div class="px-5 pb-5 pt-2 border-t border-zinc-800/80 flex items-center justify-between">
-                    <span class="text-xs text-zinc-500 uppercase" data-i18n="price-label">Ціна:</span>
-                    <span class="text-custom-yellow font-black text-2xl tracking-tight">650 грн</span>
-                </div>
-            </div>
-
-            <!-- MAHSULOT 3 -->
-            <div class="bg-zinc-900 border border-zinc-800 hover:border-custom-yellow transition duration-300 flex flex-col justify-between">
-                <div>
-                    <div class="relative overflow-hidden bg-zinc-950 h-72">
-                        <!-- IMG-3 -->
-                        <img src="IMG-3.png" alt="Product 3" class="w-full h-full object-cover cursor-pointer hover:scale-105 transition duration-500" onclick="openModal(this.src)">
-                    </div>
-                    <div class="p-5">
-                        <span class="text-xs text-zinc-500 uppercase tracking-wider" data-i18n="prod-3-cat">Жіночий одяг</span>
-                        <h3 class="font-bold text-lg mt-1 mb-3 text-white">Джинси бойфренди</h3>
-                        
-                        <!-- RAZMERLAR -->
-                        <div class="mb-4">
-                            <span class="text-xs text-zinc-400 block mb-1.5 uppercase font-semibold" data-i18n="sizes-label">Розміри:</span>
-                            <div class="flex flex-wrap gap-1.5">
-                                <span class="border border-zinc-700 bg-zinc-950 text-zinc-300 text-xs px-2.5 py-1 font-mono">26</span>
-                                <span class="border border-zinc-700 bg-zinc-950 text-zinc-300 text-xs px-2.5 py-1 font-mono">28</span>
-                                <span class="border border-zinc-700 bg-zinc-950 text-zinc-300 text-xs px-2.5 py-1 font-mono">30</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- NARX -->
-                <div class="px-5 pb-5 pt-2 border-t border-zinc-800/80 flex items-center justify-between">
-                    <span class="text-xs text-zinc-500 uppercase" data-i18n="price-label">Ціна:</span>
-                    <span class="text-custom-yellow font-black text-2xl tracking-tight">890 грн</span>
-                </div>
-            </div>
-
-            <!-- MAHSULOT 4 -->
-            <div class="bg-zinc-900 border border-zinc-800 hover:border-custom-yellow transition duration-300 flex flex-col justify-between">
-                <div>
-                    <div class="relative overflow-hidden bg-zinc-950 h-72">
-                        <!-- IMG-4 -->
-                        <img src="IMG-4.png" alt="Product 4" class="w-full h-full object-cover cursor-pointer hover:scale-105 transition duration-500" onclick="openModal(this.src)">
-                    </div>
-                    <div class="p-5">
-                        <span class="text-xs text-zinc-500 uppercase tracking-wider" data-i18n="prod-4-cat">Верхній одяг</span>
-                        <h3 class="font-bold text-lg mt-1 mb-3 text-white">Куртка еко-шкіра</h3>
-                        
-                        <!-- RAZMERLAR -->
-                        <div class="mb-4">
-                            <span class="text-xs text-zinc-400 block mb-1.5 uppercase font-semibold" data-i18n="sizes-label">Розміри:</span>
-                            <div class="flex flex-wrap gap-1.5">
-                                <span class="border border-zinc-700 bg-zinc-950 text-zinc-300 text-xs px-2.5 py-1 font-mono">S</span>
-                                <span class="border border-zinc-700 bg-zinc-950 text-zinc-300 text-xs px-2.5 py-1 font-mono">M</span>
-                                <span class="border border-zinc-700 bg-zinc-950 text-zinc-300 text-xs px-2.5 py-1 font-mono">L</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- NARX -->
-                <div class="px-5 pb-5 pt-2 border-t border-zinc-800/80 flex items-center justify-between">
-                    <span class="text-xs text-zinc-500 uppercase" data-i18n="price-label">Ціна:</span>
-                    <span class="text-custom-yellow font-black text-2xl tracking-tight">1250 грн</span>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- ABOUT SECTION -->
-    <section id="about" class="bg-zinc-950 py-24 border-t border-zinc-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div>
-                <!-- IMG-ABOUT -->
-                <div class="border-2 border-zinc-800 p-2 bg-zinc-900 shadow-xl">
-                    <img src="IMG-ABOUT.png" alt="Shop interior" class="w-full h-[380px] object-cover cursor-pointer" onclick="openModal(this.src)">
-                </div>
-                <div class="text-[10px] text-zinc-500 mt-2 text-center">[ Зображення: src="IMG-ABOUT.png" ]</div>
-            </div>
-            <div>
-                <h2 class="text-3xl font-black mb-6 uppercase tracking-wider" data-i18n="about-title">Про наш магазин</h2>
-                <p class="text-zinc-400 mb-4 leading-relaxed" data-i18n="about-p1">
-                    «Магазин низьких цін» — це місце, де ви можете придбати стильний одяг найкращої якості за найвигіднішими цінами в місті.
-                </p>
-                <p class="text-zinc-400 mb-6 leading-relaxed" data-i18n="about-p2">
-                    Завітайте до нас особисто, щоб приміряти та обрати найкращі новинки гардероба для себе та близьких!
-                </p>
-                <ul class="space-y-3 text-zinc-300 font-medium">
-                    <li class="flex items-center space-x-2"><span class="text-custom-yellow">✔</span> <span data-i18n="about-li1">Великий асортимент товарів</span></li>
-                    <li class="flex items-center space-x-2"><span class="text-custom-yellow">✔</span> <span data-i18n="about-li2">Регулярне оновлення колекцій</span></li>
-                    <li class="flex items-center space-x-2"><span class="text-custom-yellow">✔</span> <span data-i18n="about-li3">Доступні ціни для кожного</span></li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER / KONTAKTLAR (MANZILNI SHU YERGA YOZASIZ) -->
-    <footer id="contacts" class="bg-black border-t border-zinc-900 py-12 text-zinc-400">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div>
-                <div class="bg-custom-yellow text-black font-black px-3 py-1 inline-block transform -rotate-2 text-lg mb-4">
-                    МАГАЗИН НИЗЬКИХ ЦІН
-                </div>
-                <p class="text-sm" data-i18n="footer-desc">Найвигідніші ціни на стильний одяг для всієї родини.</p>
-            </div>
-            
-            <!-- MANZIL VA TELEFONLAR (SHU QATORDALarni O'ZGARTIRASIZ) -->
-            <div>
-                <h4 class="text-white font-bold mb-4 uppercase tracking-wider text-sm" data-i18n="footer-contacts">Контакти</h4>
-                <!-- ADRES -->
-                <p class="text-sm mb-2">📍 Адреса: м. Вкажіть ваше місто та адресу магазину</p>
-                <!-- TELEFON -->
-                <p class="text-sm mb-2">📞 Телефон: +38 (000) 000-00-00</p>
-            </div>
-
-            <div>
-                <h4 class="text-white font-bold mb-4 uppercase tracking-wider text-sm" data-i18n="footer-hours">Графік роботи</h4>
-                <p class="text-sm mb-2" data-i18n="footer-days">Пн - Нд: 09:00 — 19:00</p>
-                <p class="text-sm text-custom-yellow" data-i18n="footer-online">Чекаємо на вас у нашому магазині щодня!</p>
-            </div>
-        </div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 pt-8 border-t border-zinc-900 text-center text-xs text-zinc-600">
-            &copy; 2026 Магазин низьких цін. All rights reserved.
-        </div>
-    </footer>
-
-    <!-- RASMNI KATTALASHTIRIB KO'RSATISH UCHUN OYNA (MODAL) -->
-    <div id="imageModal" class="fixed inset-0 bg-black/95 z-50 hidden items-center justify-center p-4" onclick="closeModal()">
-        <div class="relative max-w-4xl max-h-full">
-            <button class="absolute -top-10 right-0 text-white text-3xl font-bold">&times;</button>
-            <img id="modalImg" src="" class="max-w-full max-h-[85vh] object-contain border-2 border-custom-yellow shadow-2xl">
-        </div>
+<header class="top">
+  <div class="wrap top-in">
+    <a href="#top" class="brand">
+      <span class="logo imgbox" data-img="logo"></span>
+      <span data-i18n="brand"></span>
+    </a>
+    <nav class="menu">
+      <a href="#categories" data-i18n="nav_cats"></a>
+      <a href="#products" data-i18n="nav_products"></a>
+      <a href="#why" data-i18n="nav_why"></a>
+      <a href="#contacts" data-i18n="nav_contacts"></a>
+    </nav>
+    <div class="lang" role="group" aria-label="Language">
+      <button data-lang="ua" aria-pressed="true">UA</button>
+      <button data-lang="ru" aria-pressed="false">RUS</button>
+      <button data-lang="en" aria-pressed="false">ENG</button>
     </div>
+  </div>
+</header>
 
-    <!-- JAVASCRIPT -->
-    <script>
-        const translations = {
-            uk: {
-                "nav-catalog": "Каталог",
-                "nav-about": "Про нас",
-                "nav-contacts": "Контакти",
-                "hero-badge": "Ексклюзивні пропозиції",
-                "hero-title-1": "ОДЯГ НА КОЖЕН ДЕНЬ",
-                "hero-title-2": "ЗА НАЙНИЖЧИМИ ЦІНАМИ",
-                "hero-desc": "Обирайте найкращі моделі безпосередньо в нашому магазині. Тільки якісний одяг, доступні ціни та широкий вибір розмірів.",
-                "hero-btn": "Дивитися каталог",
-                "catalog-title": "Каталог товарів",
-                "catalog-subtitle": "Наявні розміри та актуальні ціни",
-                "prod-1-cat": "Чоловічий одяг",
-                "prod-2-cat": "Унісекс",
-                "prod-3-cat": "Жіночий одяг",
-                "prod-4-cat": "Верхній одяг",
-                "sizes-label": "Розміри:",
-                "price-label": "Ціна:",
-                "about-title": "Про наш магазин",
-                "about-p1": "«Магазин низьких цін» — це місце, де ви можете придбати стильний одяг найкращої якості за найвигіднішими цінами в місті.",
-                "about-p2": "Завітайте до нас особисто, щоб приміряти та обрати найкращі новинки гардероба для себе та близьких!",
-                "about-li1": "Великий асортимент товарів",
-                "about-li2": "Регулярне оновлення колекцій",
-                "about-li3": "Доступні ціни для кожного",
-                "footer-desc": "Найвигідніші ціни на стильний одяг для всієї родини.",
-                "footer-contacts": "Контакти",
-                "footer-hours": "Графік роботи",
-                "footer-days": "Пн - Нд: 09:00 — 19:00",
-                "footer-online": "Чекаємо на вас у нашому магазині щодня!"
-            },
-            ru: {
-                "nav-catalog": "Каталог",
-                "nav-about": "О нас",
-                "nav-contacts": "Контакты",
-                "hero-badge": "Эксклюзивные предложения",
-                "hero-title-1": "ОДЕЖДА НА КАЖДЫЙ ДЕНЬ",
-                "hero-title-2": "ПО САМЫМ НИЗКИМ ЦЕНАМ",
-                "hero-desc": "Выбирайте лучшие модели непосредственно в нашем магазине. Только качественная одежда, доступные цены и широкий выбор размеров.",
-                "hero-btn": "Смотреть каталог",
-                "catalog-title": "Каталог товаров",
-                "catalog-subtitle": "Доступные размеры и актуальные цены",
-                "prod-1-cat": "Мужская одежда",
-                "prod-2-cat": "Унисекс",
-                "prod-3-cat": "Женская одежда",
-                "prod-4-cat": "Верхняя одежда",
-                "sizes-label": "Размеры:",
-                "price-label": "Цена:",
-                "about-title": "О нашем магазине",
-                "about-p1": "«Магазин низких цен» — это место, где вы можете приобрести стильную одежду лучшего качества по самым выгодным ценам в городе.",
-                "about-p2": "Посетите нас лично, чтобы примерить и выбрать лучшие новинки гардероба для себя и близких!",
-                "about-li1": "Большой ассортимент товаров",
-                "about-li2": "Регулярное обновление коллекций",
-                "about-li3": "Доступные цены для каждого",
-                "footer-desc": "Самые выгодные цены на стильную одежду для всей семьи.",
-                "footer-contacts": "Контакты",
-                "footer-hours": "График работы",
-                "footer-days": "Пн - Вс: 09:00 — 19:00",
-                "footer-online": "Ждем вас в нашем магазине ежедневно!"
-            },
-            en: {
-                "nav-catalog": "Catalog",
-                "nav-about": "About Us",
-                "nav-contacts": "Contacts",
-                "hero-badge": "Exclusive offers",
-                "hero-title-1": "EVERYDAY CLOTHING",
-                "hero-title-2": "AT THE LOWEST PRICES",
-                "hero-desc": "Choose the best models directly in our store. Only high-quality clothing, affordable prices, and a wide selection of sizes.",
-                "hero-btn": "View Catalog",
-                "catalog-title": "Product Catalog",
-                "catalog-subtitle": "Available sizes and current prices",
-                "prod-1-cat": "Men's clothing",
-                "prod-2-cat": "Unisex",
-                "prod-3-cat": "Women's clothing",
-                "prod-4-cat": "Outerwear",
-                "sizes-label": "Sizes:",
-                "price-label": "Price:",
-                "about-title": "About Our Store",
-                "about-p1": "«Low Price Store» is a place where you can buy stylish clothing of the best quality at the most favorable prices in the city.",
-                "about-p2": "Visit us in person to try on and choose the best wardrobe updates for yourself and your loved ones!",
-                "about-li1": "Large assortment of goods",
-                "about-li2": "Regular collection updates",
-                "about-li3": "Affordable prices for everyone",
-                "footer-desc": "The best prices on stylish clothing for the whole family.",
-                "footer-contacts": "Contacts",
-                "footer-hours": "Working Hours",
-                "footer-days": "Mon - Sun: 09:00 — 19:00",
-                "footer-online": "We are waiting for you in our store every day!"
-            }
-        };
+<main id="top">
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="slant">
+          <div class="tag solid"><h1 data-i18n="hero_1"></h1></div>
+          <div class="big" data-i18n="hero_2"></div>
+        </div>
+        <p class="lead" data-i18n="hero_lead"></p>
+        <div class="btns">
+          <a class="btn primary" href="#products" data-i18n="btn_shop"></a>
+          <a class="btn ghost" href="#contacts" data-i18n="btn_contact"></a>
+        </div>
+      </div>
+      <div class="hero-img imgbox" data-img="hero"></div>
+    </div>
+  </div>
 
-        function changeLanguage(lang) {
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (translations[lang] && translations[lang][key]) {
-                    el.textContent = translations[lang][key];
-                }
-            });
-        }
+  <!-- CATEGORIES -->
+  <section id="categories">
+    <div class="wrap">
+      <div class="sec-head"><h2 data-i18n="cats_title"></h2></div>
+      <div class="cats" id="cats"></div>
+    </div>
+  </section>
 
-        function openModal(src) {
-            document.getElementById('modalImg').src = src;
-            document.getElementById('imageModal').classList.remove('hidden');
-            document.getElementById('imageModal').classList.add('flex');
-        }
+  <!-- PRODUCTS -->
+  <section id="products" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 data-i18n="products_title"></h2>
+        <div class="filters" id="filters"></div>
+      </div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
 
-        function closeModal() {
-            document.getElementById('imageModal').classList.remove('flex');
-            document.getElementById('imageModal').classList.add('hidden');
-        }
-    </script>
+  <!-- WHY -->
+  <section class="why" id="why">
+    <div class="wrap">
+      <h2 data-i18n="why_title"></h2>
+      <div class="why-grid">
+        <div><h3 data-i18n="why1_t"></h3><p data-i18n="why1_d"></p></div>
+        <div><h3 data-i18n="why2_t"></h3><p data-i18n="why2_d"></p></div>
+        <div><h3 data-i18n="why3_t"></h3><p data-i18n="why3_d"></p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTS -->
+  <section id="contacts">
+    <div class="wrap">
+      <div class="sec-head"><h2 data-i18n="contacts_title"></h2></div>
+      <div class="contact-grid">
+        <div class="contact-list">
+          <a id="c-phone"><b data-i18n="c_phone"></b><span></span></a>
+          <a id="c-tg" target="_blank" rel="noopener"><b>Telegram</b><span></span></a>
+          <a id="c-ig" target="_blank" rel="noopener"><b>Instagram</b><span></span></a>
+          <div><b data-i18n="c_address"></b><span id="c-addr"></span></div>
+        </div>
+        <div>
+          <p class="display" style="font-size:clamp(1.6rem,4vw,2.6rem);color:var(--yellow)" data-i18n="contacts_cta"></p>
+          <p style="color:var(--mute);margin-top:1rem;max-width:36ch" data-i18n="contacts_note"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="year"></span> <span data-i18n="brand"></span></span>
+    <span data-i18n="footer_note"></span>
+  </div>
+</footer>
+
+<script>
+/* ── Переклади ── */
+const T = {
+  ua: {
+    brand:"Магазин низьких цін",
+    nav_cats:"Категорії", nav_products:"Товари", nav_why:"Чому ми", nav_contacts:"Контакти",
+    hero_1:"Магазин", hero_2:"низьких цін",
+    hero_lead:"Одяг, кросівки, сумки та білизна — усе в одному місці та за ціною, яка радує.",
+    btn_shop:"Дивитись товари", btn_contact:"Зв’язатися",
+    cats_title:"Категорії",
+    cat_clothes:"Одяг", cat_shoes:"Кросівки", cat_bags:"Сумки", cat_underwear:"Білизна",
+    filter_all:"Усі",
+    products_title:"Наші товари", buy:"Купити", currency:"₴",
+    why_title:"Чому обирають нас",
+    why1_t:"Низькі ціни", why1_d:"Чесні ціни без зайвих накруток — щодня.",
+    why2_t:"Усе в одному місці", why2_d:"Одяг, взуття, сумки та білизна для всієї родини.",
+    why3_t:"Швидка відповідь", why3_d:"Напишіть нам у Telegram або Instagram — відповімо швидко.",
+    contacts_title:"Контакти", c_phone:"Телефон", c_address:"Адреса",
+    contacts_cta:"Напишіть нам — підберемо розмір і запропонуємо найкращу ціну",
+    contacts_note:"Замовлення, наявність і розміри — уточнюйте за телефоном або в месенджері.",
+    footer_note:"Усі права захищено.",
+    ribbon:["Низькі ціни щодня","Новинки одягу","Кросівки в наявності","Сумки та рюкзаки","Білизна для всієї родини"]
+  },
+  ru: {
+    brand:"Магазин низких цен",
+    nav_cats:"Категории", nav_products:"Товары", nav_why:"Почему мы", nav_contacts:"Контакты",
+    hero_1:"Магазин", hero_2:"низких цен",
+    hero_lead:"Одежда, кроссовки, сумки и бельё — всё в одном месте по цене, которая радует.",
+    btn_shop:"Смотреть товары", btn_contact:"Связаться",
+    cats_title:"Категории",
+    cat_clothes:"Одежда", cat_shoes:"Кроссовки", cat_bags:"Сумки", cat_underwear:"Бельё",
+    filter_all:"Все",
+    products_title:"Наши товары", buy:"Купить", currency:"₴",
+    why_title:"Почему выбирают нас",
+    why1_t:"Низкие цены", why1_d:"Честные цены без лишних наценок — каждый день.",
+    why2_t:"Всё в одном месте", why2_d:"Одежда, обувь, сумки и бельё для всей семьи.",
+    why3_t:"Быстрый ответ", why3_d:"Напишите нам в Telegram или Instagram — ответим быстро.",
+    contacts_title:"Контакты", c_phone:"Телефон", c_address:"Адрес",
+    contacts_cta:"Напишите нам — подберём размер и предложим лучшую цену",
+    contacts_note:"Заказы, наличие и размеры — уточняйте по телефону или в мессенджере.",
+    footer_note:"Все права защищены.",
+    ribbon:["Низкие цены каждый день","Новинки одежды","Кроссовки в наличии","Сумки и рюкзаки","Бельё для всей семьи"]
+  },
+  en: {
+    brand:"Low Price Store",
+    nav_cats:"Categories", nav_products:"Products", nav_why:"Why us", nav_contacts:"Contacts",
+    hero_1:"Store of", hero_2:"low prices",
+    hero_lead:"Clothes, sneakers, bags and underwear — everything in one place at a price you’ll like.",
+    btn_shop:"Browse products", btn_contact:"Contact us",
+    cats_title:"Categories",
+    cat_clothes:"Clothing", cat_shoes:"Sneakers", cat_bags:"Bags", cat_underwear:"Underwear",
+    filter_all:"All",
+    products_title:"Our products", buy:"Buy", currency:"₴",
+    why_title:"Why choose us",
+    why1_t:"Low prices", why1_d:"Fair prices with no hidden markups — every day.",
+    why2_t:"Everything in one place", why2_d:"Clothes, shoes, bags and underwear for the whole family.",
+    why3_t:"Quick replies", why3_d:"Message us on Telegram or Instagram — we answer fast.",
+    contacts_title:"Contacts", c_phone:"Phone", c_address:"Address",
+    contacts_cta:"Write to us — we’ll find your size and the best price",
+    contacts_note:"Orders, availability and sizes — ask by phone or in a messenger.",
+    footer_note:"All rights reserved.",
+    ribbon:["Low prices every day","New arrivals","Sneakers in stock","Bags & backpacks","Underwear for the whole family"]
+  }
+};
+
+const CATS = ["clothes","shoes","bags","underwear"];
+let lang = "ua", activeCat = "all";
+
+/* ── IMG: rasm bo'lsa ko'rsatadi, bo'lmasa sariq-qora joy ── */
+function fillImg(el, key, label){
+  const src = IMG[key];
+  el.innerHTML = "";
+  if(!src){ el.innerHTML = `<div class="ph"><div>IMG<small>${label||key}</small></div></div>`; return; }
+  const img = new Image();
+  img.alt = label || key; img.loading = "lazy";
+  img.onerror = () => { el.innerHTML = `<div class="ph"><div>IMG<small>${src}</small></div></div>`; };
+  img.src = src;
+  el.appendChild(img);
+}
+
+/* ── Рендер ── */
+function renderStatic(){
+  const t = T[lang];
+  document.documentElement.lang = lang === "ua" ? "uk" : lang;
+  document.title = t.brand;
+  document.querySelectorAll("[data-i18n]").forEach(el => { const v = t[el.dataset.i18n]; if(v) el.textContent = v; });
+  document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === lang));
+
+  // ribbon
+  const items = t.ribbon.map(s => `<span>★ ${s}</span>`).join("");
+  document.getElementById("ribbon").innerHTML = items + items;
+
+  // contacts
+  const ph = document.getElementById("c-phone");
+  ph.href = "tel:" + CONTACT.phone.replace(/[^\d+]/g,""); ph.querySelector("span").textContent = CONTACT.phone;
+  const tg = document.getElementById("c-tg"); tg.href = CONTACT.telegram; tg.querySelector("span").textContent = CONTACT.telegram.replace("https://","");
+  const ig = document.getElementById("c-ig"); ig.href = CONTACT.instagram; ig.querySelector("span").textContent = CONTACT.instagram.replace("https://","");
+  document.getElementById("c-addr").textContent = CONTACT.address[lang];
+
+  // categories
+  const catsEl = document.getElementById("cats");
+  catsEl.innerHTML = "";
+  CATS.forEach(c => {
+    const b = document.createElement("button");
+    b.className = "cat"; b.type = "button";
+    b.innerHTML = `<div class="imgbox"></div><span>${t["cat_"+c]}</span>`;
+    fillImg(b.querySelector(".imgbox"), "cat_"+c, t["cat_"+c]);
+    b.onclick = () => { activeCat = c; renderProducts(); document.getElementById("products").scrollIntoView({behavior:"smooth"}); };
+    catsEl.appendChild(b);
+  });
+
+  // filters
+  const f = document.getElementById("filters");
+  f.innerHTML = "";
+  ["all",...CATS].forEach(c => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.textContent = c === "all" ? t.filter_all : t["cat_"+c];
+    b.setAttribute("aria-pressed", c === activeCat);
+    b.onclick = () => { activeCat = c; renderProducts(); };
+    f.appendChild(b);
+  });
+}
+
+function renderProducts(){
+  const t = T[lang];
+  const grid = document.getElementById("grid");
+  grid.innerHTML = "";
+  PRODUCTS.filter(p => activeCat === "all" || p.cat === activeCat).forEach(p => {
+    const el = document.createElement("article");
+    el.className = "card";
+    el.innerHTML = `<div class="imgbox"></div>
+      <div class="body"><h3>${p[lang]}</h3>
+        <div class="row"><span class="price">${p.price} ${t.currency}</span>
+        <a class="buy" href="#contacts">${t.buy}</a></div></div>`;
+    fillImg(el.querySelector(".imgbox"), p.id, p[lang]);
+    grid.appendChild(el);
+  });
+  document.querySelectorAll("#filters button").forEach((b,i) => {
+    const key = ["all",...CATS][i]; b.setAttribute("aria-pressed", key === activeCat);
+  });
+}
+
+function setLang(l){
+  lang = l;
+  try{ localStorage.setItem("lang", l); }catch(e){}
+  renderStatic(); renderProducts();
+}
+
+document.querySelectorAll(".lang button").forEach(b => b.onclick = () => setLang(b.dataset.lang));
+document.querySelectorAll("[data-img]").forEach(el => fillImg(el, el.dataset.img));
+document.getElementById("year").textContent = new Date().getFullYear();
+
+/* Default — українська. Agar foydalanuvchi avval til tanlagan bo'lsa, o'shani eslaydi */
+let saved = null;
+try{ saved = localStorage.getItem("lang"); }catch(e){}
+setLang(T[saved] ? saved : "ua");
+</script>
 </body>
 </html>
