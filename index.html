@@ -28,8 +28,8 @@ const IMG_CAT_SHOES     = "cat-shoes.jpg";      // Кросівки
 const IMG_CAT_BAGS      = "cat-bags.jpg";       // Сумки
 const IMG_CAT_UNDERWEAR = "cat-underwear.jpg";  // Білизна
 
-const IMG_P1  = "p1.jpg";
-const IMG_P2  = "p2.jpg";
+const IMG_P1  = "jeans.jpg";    // Джинси 710 грн
+const IMG_P2  = "tshirt.jpg";   // Футболка 290 грн
 const IMG_P3  = "p3.jpg";
 const IMG_P4  = "p4.jpg";
 const IMG_P5  = "p5.jpg";
@@ -44,7 +44,7 @@ const IMG_P12 = "p12.jpg";
 /* ╔════════════════════════════════════════════════════════════════╗
    ║  2) KONTAKTLAR                                                 ║
    ╚════════════════════════════════════════════════════════════════╝ */
-const VIBER    = "+380 63 978 79 74";                 // Viber raqam
+const VIBER    = "+380 00 000 00 00";                 // Viber raqam
 const TELEGRAM = "https://t.me/your_shop";            // Telegram havola
 const TIKTOK   = "https://www.tiktok.com/@your_shop"; // TikTok havola
 const ADDRESS  = {
@@ -59,9 +59,9 @@ const ADDRESS  = {
    ╚════════════════════════════════════════════════════════════════╝ */
 const CURRENCY = "₴";
 const PRODUCTS = [
-  { img: IMG_P1,  var:"IMG_P1",  cat:"clothes",   price:699,  ua:"Худі оверсайз",       ru:"Худи оверсайз",       en:"Oversized hoodie" },
-  { img: IMG_P2,  var:"IMG_P2",  cat:"clothes",   price:899,  ua:"Джинси прямого крою", ru:"Джинсы прямого кроя", en:"Straight-fit jeans" },
-  { img: IMG_P3,  var:"IMG_P3",  cat:"clothes",   price:299,  ua:"Футболка базова",     ru:"Футболка базовая",    en:"Basic T-shirt" },
+  { img: IMG_P1,  var:"IMG_P1",  cat:"clothes",   price:710,  ua:"Джинси",              ru:"Джинсы",              en:"Jeans" },
+  { img: IMG_P2,  var:"IMG_P2",  cat:"clothes",   price:290,  ua:"Футболка",            ru:"Футболка",            en:"T-shirt" },
+  { img: IMG_P3,  var:"IMG_P3",  cat:"clothes",   price:699,  ua:"Худі оверсайз",       ru:"Худи оверсайз",       en:"Oversized hoodie" },
   { img: IMG_P4,  var:"IMG_P4",  cat:"clothes",   price:1299, ua:"Куртка демісезонна",  ru:"Куртка демисезонная", en:"Light jacket" },
   { img: IMG_P5,  var:"IMG_P5",  cat:"shoes",     price:1499, ua:"Кросівки Classic",    ru:"Кроссовки Classic",   en:"Classic sneakers" },
   { img: IMG_P6,  var:"IMG_P6",  cat:"shoes",     price:1699, ua:"Кросівки для бігу",   ru:"Кроссовки для бега",  en:"Running sneakers" },
@@ -169,7 +169,7 @@ const SINGLE_IMAGES = {
   @media(max-width:700px){.grid{grid-template-columns:repeat(2,1fr);gap:.7rem}}
   .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;transition:border-color .15s,transform .15s}
   .card:hover{border-color:var(--yellow);transform:translateY(-3px)}
-  .card .imgbox{aspect-ratio:1/1}
+  .card .imgbox{aspect-ratio:3/4}
   .card .body{padding:.9rem 1rem 1.1rem;display:flex;flex-direction:column;gap:.5rem;flex:1}
   .card h3{font-size:1.15rem;text-transform:none;letter-spacing:0;font-weight:500}
   .card .row{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:.5rem}
