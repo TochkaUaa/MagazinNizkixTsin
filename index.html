@@ -9,57 +9,86 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
 
-<!-- ╔══════════════════════════════════════════════════════════════╗
-     ║  1) RASMLAR (IMG) — SHU YERDA YOZIB QO'YILADI               ║
-     ║  Rasmlarni repozitoriydagi "img" papkasiga yuklang,          ║
-     ║  keyin pastdagi yo'llarni o'zgartiring. Bo'sh qoldirsangiz   ║
-     ║  — joyida sariq "IMG" blok ko'rinadi.                        ║
-     ╚══════════════════════════════════════════════════════════════╝ -->
 <script>
-const IMG = {
-  logo:   "img/logo.png",          // логотип
-  hero:   "img/hero.jpg",          // головне фото зверху
+/* ╔════════════════════════════════════════════════════════════════╗
+   ║  1) RASMLAR — faqat shu yerda o'zgartirasiz                    ║
+   ║  Rasmlarni GitHub'da "img" papkasiga yuklang va faqat fayl     ║
+   ║  nomini yozing. Bo'sh "" qoldirsangiz, joyida sariq-qora       ║
+   ║  "IMG" blok va o'zgaruvchi nomi ko'rinadi.                     ║
+   ║  Agar rasmlar papkasiz, to'g'ridan-to'g'ri repozitoriy         ║
+   ║  ildizida bo'lsa: IMG_FOLDER = "" qiling.                      ║
+   ╚════════════════════════════════════════════════════════════════╝ */
+const IMG_FOLDER = "img/";
 
-  // категорії
-  cat_clothes:   "img/cat-clothes.jpg",
-  cat_shoes:     "img/cat-shoes.jpg",
-  cat_bags:      "img/cat-bags.jpg",
-  cat_underwear: "img/cat-underwear.jpg",
+const IMG_LOGO = "logo.png";          // логотип
+const IMG_HERO = "hero.jpg";          // katta rasm tepada
 
-  // товари (p1 ... p12)
-  p1:  "img/p1.jpg",   p2:  "img/p2.jpg",   p3:  "img/p3.jpg",   p4:  "img/p4.jpg",
-  p5:  "img/p5.jpg",   p6:  "img/p6.jpg",   p7:  "img/p7.jpg",   p8:  "img/p8.jpg",
-  p9:  "img/p9.jpg",   p10: "img/p10.jpg",  p11: "img/p11.jpg",  p12: "img/p12.jpg"
+const IMG_CAT_CLOTHES   = "cat-clothes.jpg";    // Одяг
+const IMG_CAT_SHOES     = "cat-shoes.jpg";      // Кросівки
+const IMG_CAT_BAGS      = "cat-bags.jpg";       // Сумки
+const IMG_CAT_UNDERWEAR = "cat-underwear.jpg";  // Білизна
+
+const IMG_P1  = "p1.jpg";
+const IMG_P2  = "p2.jpg";
+const IMG_P3  = "p3.jpg";
+const IMG_P4  = "p4.jpg";
+const IMG_P5  = "p5.jpg";
+const IMG_P6  = "p6.jpg";
+const IMG_P7  = "p7.jpg";
+const IMG_P8  = "p8.jpg";
+const IMG_P9  = "p9.jpg";
+const IMG_P10 = "p10.jpg";
+const IMG_P11 = "p11.jpg";
+const IMG_P12 = "p12.jpg";
+
+/* ╔════════════════════════════════════════════════════════════════╗
+   ║  2) KONTAKTLAR                                                 ║
+   ╚════════════════════════════════════════════════════════════════╝ */
+const VIBER    = "+380 00 000 00 00";                 // Viber raqam
+const TELEGRAM = "https://t.me/your_shop";            // Telegram havola
+const TIKTOK   = "https://www.tiktok.com/@your_shop"; // TikTok havola
+const ADDRESS  = {
+  ua: "м. Київ, вул. Прикладна, 1",
+  ru: "г. Киев, ул. Примерная, 1",
+  en: "1 Example St., Kyiv"
 };
 
-/* 2) KONTAKTLAR — o'zingiznikiga almashtiring */
-const CONTACT = {
-  phone: "+380 00 000 00 00",
-  telegram: "https://t.me/your_shop",
-  instagram: "https://instagram.com/your_shop",
-  address: { ua: "м. Київ, вул. Прикладна, 1", ru: "г. Киев, ул. Примерная, 1", en: "1 Example St., Kyiv" }
-};
-
-/* 3) TOVARLAR — nomi 3 tilda, narxi ₴ (грн) da */
+/* ╔════════════════════════════════════════════════════════════════╗
+   ║  3) TOVARLAR — nomi 3 tilda + narx                             ║
+   ║  cat: clothes | shoes | bags | underwear                       ║
+   ╚════════════════════════════════════════════════════════════════╝ */
+const CURRENCY = "₴";
 const PRODUCTS = [
-  { id:"p1",  cat:"clothes",   price:699, ua:"Худі оверсайз",        ru:"Худи оверсайз",         en:"Oversized hoodie" },
-  { id:"p2",  cat:"clothes",   price:899, ua:"Джинси прямого крою",  ru:"Джинсы прямого кроя",   en:"Straight-fit jeans" },
-  { id:"p3",  cat:"clothes",   price:299, ua:"Футболка базова",      ru:"Футболка базовая",      en:"Basic T-shirt" },
-  { id:"p4",  cat:"clothes",   price:1299,ua:"Куртка демісезонна",   ru:"Куртка демисезонная",   en:"Light jacket" },
-  { id:"p5",  cat:"shoes",     price:1499,ua:"Кросівки Classic",     ru:"Кроссовки Classic",     en:"Classic sneakers" },
-  { id:"p6",  cat:"shoes",     price:1699,ua:"Кросівки для бігу",    ru:"Кроссовки для бега",    en:"Running sneakers" },
-  { id:"p7",  cat:"shoes",     price:799, ua:"Кеди",                 ru:"Кеды",                  en:"Canvas shoes" },
-  { id:"p8",  cat:"bags",      price:549, ua:"Рюкзак міський",       ru:"Рюкзак городской",      en:"City backpack" },
-  { id:"p9",  cat:"bags",      price:399, ua:"Сумка через плече",    ru:"Сумка через плечо",     en:"Crossbody bag" },
-  { id:"p10", cat:"bags",      price:199, ua:"Шопер",                ru:"Шопер",                 en:"Tote bag" },
-  { id:"p11", cat:"underwear", price:249, ua:"Боксери, 3 шт.",       ru:"Боксеры, 3 шт.",        en:"Boxers, 3 pcs" },
-  { id:"p12", cat:"underwear", price:179, ua:"Шкарпетки, 5 пар",     ru:"Носки, 5 пар",          en:"Socks, 5 pairs" }
+  { img: IMG_P1,  var:"IMG_P1",  cat:"clothes",   price:699,  ua:"Худі оверсайз",       ru:"Худи оверсайз",       en:"Oversized hoodie" },
+  { img: IMG_P2,  var:"IMG_P2",  cat:"clothes",   price:899,  ua:"Джинси прямого крою", ru:"Джинсы прямого кроя", en:"Straight-fit jeans" },
+  { img: IMG_P3,  var:"IMG_P3",  cat:"clothes",   price:299,  ua:"Футболка базова",     ru:"Футболка базовая",    en:"Basic T-shirt" },
+  { img: IMG_P4,  var:"IMG_P4",  cat:"clothes",   price:1299, ua:"Куртка демісезонна",  ru:"Куртка демисезонная", en:"Light jacket" },
+  { img: IMG_P5,  var:"IMG_P5",  cat:"shoes",     price:1499, ua:"Кросівки Classic",    ru:"Кроссовки Classic",   en:"Classic sneakers" },
+  { img: IMG_P6,  var:"IMG_P6",  cat:"shoes",     price:1699, ua:"Кросівки для бігу",   ru:"Кроссовки для бега",  en:"Running sneakers" },
+  { img: IMG_P7,  var:"IMG_P7",  cat:"shoes",     price:799,  ua:"Кеди",                ru:"Кеды",                en:"Canvas shoes" },
+  { img: IMG_P8,  var:"IMG_P8",  cat:"bags",      price:549,  ua:"Рюкзак міський",      ru:"Рюкзак городской",    en:"City backpack" },
+  { img: IMG_P9,  var:"IMG_P9",  cat:"bags",      price:399,  ua:"Сумка через плече",   ru:"Сумка через плечо",   en:"Crossbody bag" },
+  { img: IMG_P10, var:"IMG_P10", cat:"bags",      price:199,  ua:"Шопер",               ru:"Шопер",               en:"Tote bag" },
+  { img: IMG_P11, var:"IMG_P11", cat:"underwear", price:249,  ua:"Боксери, 3 шт.",      ru:"Боксеры, 3 шт.",      en:"Boxers, 3 pcs" },
+  { img: IMG_P12, var:"IMG_P12", cat:"underwear", price:179,  ua:"Шкарпетки, 5 пар",    ru:"Носки, 5 пар",        en:"Socks, 5 pairs" }
 ];
+
+/* ═══════════ Pastdan keyin tegmasangiz ham bo'ladi ═══════════ */
+const CAT_IMAGES = {
+  clothes:   [IMG_CAT_CLOTHES,   "IMG_CAT_CLOTHES"],
+  shoes:     [IMG_CAT_SHOES,     "IMG_CAT_SHOES"],
+  bags:      [IMG_CAT_BAGS,      "IMG_CAT_BAGS"],
+  underwear: [IMG_CAT_UNDERWEAR, "IMG_CAT_UNDERWEAR"]
+};
+const SINGLE_IMAGES = {
+  logo: [IMG_LOGO, "IMG_LOGO"],
+  hero: [IMG_HERO, "IMG_HERO"]
+};
 </script>
 
 <style>
   :root{
-    --black:#000; --ink:#0d0d0d; --card:#161616; --line:#2a2a2a;
+    --black:#000; --card:#161616; --line:#2a2a2a;
     --yellow:#ffd60a; --white:#f5f5f0; --mute:#a8a8a0;
     --r:6px;
   }
@@ -72,18 +101,19 @@ const PRODUCTS = [
   :focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
   .wrap{width:min(1180px,92%);margin-inline:auto}
 
-  /* ── Ribbon ── */
+  /* Ribbon */
   .ribbon{background:var(--yellow);color:#000;overflow:hidden;white-space:nowrap;font-family:'Oswald',sans-serif;font-weight:700;text-transform:uppercase;font-size:.95rem;padding:.45rem 0}
   .ribbon-track{display:inline-block;padding-left:100%;animation:run 28s linear infinite}
   .ribbon-track span{margin-right:3rem}
   @keyframes run{to{transform:translateX(-100%)}}
 
-  /* ── Header ── */
+  /* Header */
   header.top{position:sticky;top:0;z-index:20;background:rgba(0,0,0,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
   .top-in{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.7rem 0}
   .brand{display:flex;align-items:center;gap:.7rem;font-family:'Oswald',sans-serif;font-weight:700;text-transform:uppercase;font-size:1.15rem}
   .brand .logo{width:42px;height:42px;border-radius:50%;overflow:hidden;background:var(--yellow);flex:none}
-  .brand .logo img{width:100%;height:100%;object-fit:cover}
+  .brand .logo .ph{font-size:.55rem;letter-spacing:0;color:#000;background:var(--yellow)}
+  .brand .logo .ph small{display:none}
   nav.menu{display:flex;gap:1.6rem;font-weight:600;font-size:.95rem}
   nav.menu a{color:var(--mute);transition:color .15s}
   nav.menu a:hover{color:var(--yellow)}
@@ -92,16 +122,14 @@ const PRODUCTS = [
   .lang button[aria-pressed="true"]{background:var(--yellow);color:#000}
   @media(max-width:760px){nav.menu{display:none}}
 
-  /* ── Hero ── */
+  /* Hero */
   .hero{position:relative;padding:clamp(2.5rem,7vw,6rem) 0 clamp(3rem,7vw,5rem);overflow:hidden}
   .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:2.5rem;align-items:center}
   @media(max-width:860px){.hero-grid{grid-template-columns:1fr}}
   .slant{transform:rotate(-6deg);transform-origin:left center}
-  .tag{display:inline-block;border:5px solid var(--yellow);padding:.15em .35em;margin-bottom:.15em}
-  .tag h1{font-size:clamp(2.2rem,6.2vw,4.6rem);color:var(--yellow)}
+  .tag{display:inline-block;padding:.15em .35em;margin-bottom:.15em;background:var(--yellow)}
+  .tag h1{font-size:clamp(2.2rem,6.2vw,4.6rem);color:#000}
   .big{font-family:'Oswald',sans-serif;font-weight:700;text-transform:uppercase;color:var(--yellow);font-size:clamp(2.8rem,9vw,7rem);line-height:.98}
-  .tag.solid{background:var(--yellow)}
-  .tag.solid h1{color:#000}
   .hero p.lead{margin-top:2.4rem;max-width:34ch;color:var(--mute);font-size:1.1rem}
   .btns{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.6rem}
   .btn{display:inline-block;padding:.85rem 1.5rem;border-radius:var(--r);font:700 1rem 'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.04em;border:2px solid var(--yellow);transition:transform .15s,background .15s,color .15s}
@@ -111,17 +139,17 @@ const PRODUCTS = [
   .btn.ghost:hover{background:var(--yellow);color:#000}
   .hero-img{aspect-ratio:4/5;border-radius:var(--r);overflow:hidden;border:2px solid var(--line)}
 
-  /* ── IMG placeholder ── */
-  .ph{background:repeating-linear-gradient(135deg,#1c1c1c 0 14px,#232323 14px 28px);display:grid;place-items:center;width:100%;height:100%;color:var(--yellow);font:700 1.4rem 'Oswald',sans-serif;letter-spacing:.1em}
-  .ph small{display:block;color:var(--mute);font:600 .75rem 'Manrope',sans-serif;letter-spacing:0;text-align:center;margin-top:.2rem}
+  /* IMG placeholder */
+  .ph{background:repeating-linear-gradient(135deg,#1c1c1c 0 14px,#232323 14px 28px);display:grid;place-items:center;width:100%;height:100%;color:var(--yellow);font:700 1.4rem 'Oswald',sans-serif;letter-spacing:.1em;text-align:center}
+  .ph small{display:block;color:var(--mute);font:600 .75rem 'Manrope',sans-serif;letter-spacing:0;margin-top:.2rem}
   .imgbox img{width:100%;height:100%;object-fit:cover}
 
-  /* ── Sections ── */
+  /* Sections */
   section{padding:clamp(3rem,7vw,5.5rem) 0}
   .sec-head{display:flex;align-items:end;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:2rem}
   .sec-head h2{font-size:clamp(2rem,5vw,3.4rem)}
 
-  /* categories */
+  /* Categories */
   .cats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
   @media(max-width:860px){.cats{grid-template-columns:repeat(2,1fr)}}
   .cat{position:relative;aspect-ratio:3/4;border-radius:var(--r);overflow:hidden;border:2px solid var(--line);cursor:pointer;background:none;color:inherit;padding:0;text-align:left}
@@ -129,13 +157,13 @@ const PRODUCTS = [
   .cat span{position:absolute;left:0;bottom:1rem;background:var(--yellow);color:#000;font:700 1.2rem 'Oswald',sans-serif;text-transform:uppercase;padding:.25rem .8rem;transform:rotate(-3deg) translateX(-.3rem)}
   .cat:hover{border-color:var(--yellow)}
 
-  /* filters */
+  /* Filters */
   .filters{display:flex;flex-wrap:wrap;gap:.5rem}
   .filters button{background:transparent;color:var(--white);border:2px solid var(--line);border-radius:999px;padding:.45rem 1.1rem;font:600 .9rem 'Manrope',sans-serif;cursor:pointer;transition:all .15s}
   .filters button:hover{border-color:var(--yellow)}
   .filters button[aria-pressed="true"]{background:var(--yellow);border-color:var(--yellow);color:#000}
 
-  /* products */
+  /* Products */
   .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem}
   @media(max-width:1000px){.grid{grid-template-columns:repeat(3,1fr)}}
   @media(max-width:700px){.grid{grid-template-columns:repeat(2,1fr);gap:.7rem}}
@@ -146,9 +174,10 @@ const PRODUCTS = [
   .card h3{font-size:1.15rem;text-transform:none;letter-spacing:0;font-weight:500}
   .card .row{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:.5rem}
   .price{font:700 1.5rem 'Oswald',sans-serif;color:var(--yellow)}
-  .card .buy{font:700 .8rem 'Oswald',sans-serif;text-transform:uppercase;background:var(--yellow);color:#000;padding:.4rem .8rem;border-radius:var(--r)}
+  .card .view{font:700 .8rem 'Oswald',sans-serif;text-transform:uppercase;border:2px solid var(--yellow);color:var(--yellow);padding:.3rem .8rem;border-radius:var(--r);transition:background .15s,color .15s}
+  .card .view:hover{background:var(--yellow);color:#000}
 
-  /* why */
+  /* Why */
   .why{background:var(--yellow);color:#000}
   .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
   @media(max-width:800px){.why-grid{grid-template-columns:1fr}}
@@ -156,7 +185,7 @@ const PRODUCTS = [
   .why h3{font-size:1.6rem;margin-bottom:.4rem}
   .why p{font-weight:600;max-width:32ch}
 
-  /* contacts */
+  /* Contacts */
   .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
   @media(max-width:800px){.contact-grid{grid-template-columns:1fr}}
   .contact-list{display:grid;gap:.8rem;font-size:1.1rem}
@@ -166,6 +195,7 @@ const PRODUCTS = [
 
   footer{border-top:1px solid var(--line);padding:1.5rem 0;color:var(--mute);font-size:.9rem}
   footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
+  footer a{color:var(--yellow);font-weight:700}
 
   @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
@@ -177,7 +207,7 @@ const PRODUCTS = [
 <header class="top">
   <div class="wrap top-in">
     <a href="#top" class="brand">
-      <span class="logo imgbox" data-img="logo"></span>
+      <span class="logo imgbox" data-single="logo"></span>
       <span data-i18n="brand"></span>
     </a>
     <nav class="menu">
@@ -195,12 +225,11 @@ const PRODUCTS = [
 </header>
 
 <main id="top">
-  <!-- HERO -->
   <div class="hero">
     <div class="wrap hero-grid">
       <div>
         <div class="slant">
-          <div class="tag solid"><h1 data-i18n="hero_1"></h1></div>
+          <div class="tag"><h1 data-i18n="hero_1"></h1></div>
           <div class="big" data-i18n="hero_2"></div>
         </div>
         <p class="lead" data-i18n="hero_lead"></p>
@@ -209,11 +238,10 @@ const PRODUCTS = [
           <a class="btn ghost" href="#contacts" data-i18n="btn_contact"></a>
         </div>
       </div>
-      <div class="hero-img imgbox" data-img="hero"></div>
+      <div class="hero-img imgbox" data-single="hero"></div>
     </div>
   </div>
 
-  <!-- CATEGORIES -->
   <section id="categories">
     <div class="wrap">
       <div class="sec-head"><h2 data-i18n="cats_title"></h2></div>
@@ -221,7 +249,6 @@ const PRODUCTS = [
     </div>
   </section>
 
-  <!-- PRODUCTS -->
   <section id="products" style="padding-top:0">
     <div class="wrap">
       <div class="sec-head">
@@ -232,7 +259,6 @@ const PRODUCTS = [
     </div>
   </section>
 
-  <!-- WHY -->
   <section class="why" id="why">
     <div class="wrap">
       <h2 data-i18n="why_title"></h2>
@@ -244,15 +270,14 @@ const PRODUCTS = [
     </div>
   </section>
 
-  <!-- CONTACTS -->
   <section id="contacts">
     <div class="wrap">
       <div class="sec-head"><h2 data-i18n="contacts_title"></h2></div>
       <div class="contact-grid">
         <div class="contact-list">
-          <a id="c-phone"><b data-i18n="c_phone"></b><span></span></a>
+          <a id="c-viber"><b>Viber</b><span></span></a>
           <a id="c-tg" target="_blank" rel="noopener"><b>Telegram</b><span></span></a>
-          <a id="c-ig" target="_blank" rel="noopener"><b>Instagram</b><span></span></a>
+          <a id="c-tt" target="_blank" rel="noopener"><b>TikTok</b><span></span></a>
           <div><b data-i18n="c_address"></b><span id="c-addr"></span></div>
         </div>
         <div>
@@ -267,7 +292,7 @@ const PRODUCTS = [
 <footer>
   <div class="wrap">
     <span>© <span id="year"></span> <span data-i18n="brand"></span></span>
-    <span data-i18n="footer_note"></span>
+    <a id="f-tt" target="_blank" rel="noopener">TikTok</a>
   </div>
 </footer>
 
@@ -283,15 +308,14 @@ const T = {
     cats_title:"Категорії",
     cat_clothes:"Одяг", cat_shoes:"Кросівки", cat_bags:"Сумки", cat_underwear:"Білизна",
     filter_all:"Усі",
-    products_title:"Наші товари", buy:"Купити", currency:"₴",
+    products_title:"Наші товари", view:"Дивитись",
     why_title:"Чому обирають нас",
     why1_t:"Низькі ціни", why1_d:"Чесні ціни без зайвих накруток — щодня.",
     why2_t:"Усе в одному місці", why2_d:"Одяг, взуття, сумки та білизна для всієї родини.",
-    why3_t:"Швидка відповідь", why3_d:"Напишіть нам у Telegram або Instagram — відповімо швидко.",
-    contacts_title:"Контакти", c_phone:"Телефон", c_address:"Адреса",
-    contacts_cta:"Напишіть нам — підберемо розмір і запропонуємо найкращу ціну",
-    contacts_note:"Замовлення, наявність і розміри — уточнюйте за телефоном або в месенджері.",
-    footer_note:"Усі права захищено.",
+    why3_t:"Швидка відповідь", why3_d:"Напишіть нам у Viber, Telegram або TikTok — відповімо швидко.",
+    contacts_title:"Контакти", c_address:"Адреса",
+    contacts_cta:"Приходьте до нас — підберемо розмір і запропонуємо найкращу ціну",
+    contacts_note:"Доставки немає — чекаємо вас у магазині. Наявність і розміри уточнюйте у Viber.",
     ribbon:["Низькі ціни щодня","Новинки одягу","Кросівки в наявності","Сумки та рюкзаки","Білизна для всієї родини"]
   },
   ru: {
@@ -303,15 +327,14 @@ const T = {
     cats_title:"Категории",
     cat_clothes:"Одежда", cat_shoes:"Кроссовки", cat_bags:"Сумки", cat_underwear:"Бельё",
     filter_all:"Все",
-    products_title:"Наши товары", buy:"Купить", currency:"₴",
+    products_title:"Наши товары", view:"Смотреть",
     why_title:"Почему выбирают нас",
     why1_t:"Низкие цены", why1_d:"Честные цены без лишних наценок — каждый день.",
     why2_t:"Всё в одном месте", why2_d:"Одежда, обувь, сумки и бельё для всей семьи.",
-    why3_t:"Быстрый ответ", why3_d:"Напишите нам в Telegram или Instagram — ответим быстро.",
-    contacts_title:"Контакты", c_phone:"Телефон", c_address:"Адрес",
-    contacts_cta:"Напишите нам — подберём размер и предложим лучшую цену",
-    contacts_note:"Заказы, наличие и размеры — уточняйте по телефону или в мессенджере.",
-    footer_note:"Все права защищены.",
+    why3_t:"Быстрый ответ", why3_d:"Напишите нам в Viber, Telegram или TikTok — ответим быстро.",
+    contacts_title:"Контакты", c_address:"Адрес",
+    contacts_cta:"Приходите к нам — подберём размер и предложим лучшую цену",
+    contacts_note:"Доставки нет — ждём вас в магазине. Наличие и размеры уточняйте в Viber.",
     ribbon:["Низкие цены каждый день","Новинки одежды","Кроссовки в наличии","Сумки и рюкзаки","Бельё для всей семьи"]
   },
   en: {
@@ -323,15 +346,14 @@ const T = {
     cats_title:"Categories",
     cat_clothes:"Clothing", cat_shoes:"Sneakers", cat_bags:"Bags", cat_underwear:"Underwear",
     filter_all:"All",
-    products_title:"Our products", buy:"Buy", currency:"₴",
+    products_title:"Our products", view:"View",
     why_title:"Why choose us",
     why1_t:"Low prices", why1_d:"Fair prices with no hidden markups — every day.",
     why2_t:"Everything in one place", why2_d:"Clothes, shoes, bags and underwear for the whole family.",
-    why3_t:"Quick replies", why3_d:"Message us on Telegram or Instagram — we answer fast.",
-    contacts_title:"Contacts", c_phone:"Phone", c_address:"Address",
-    contacts_cta:"Write to us — we’ll find your size and the best price",
-    contacts_note:"Orders, availability and sizes — ask by phone or in a messenger.",
-    footer_note:"All rights reserved.",
+    why3_t:"Quick replies", why3_d:"Message us on Viber, Telegram or TikTok — we answer fast.",
+    contacts_title:"Contacts", c_address:"Address",
+    contacts_cta:"Visit us — we’ll find your size and the best price",
+    contacts_note:"No delivery — come to our store. Ask about availability and sizes on Viber.",
     ribbon:["Low prices every day","New arrivals","Sneakers in stock","Bags & backpacks","Underwear for the whole family"]
   }
 };
@@ -340,14 +362,14 @@ const CATS = ["clothes","shoes","bags","underwear"];
 let lang = "ua", activeCat = "all";
 
 /* ── IMG: rasm bo'lsa ko'rsatadi, bo'lmasa sariq-qora joy ── */
-function fillImg(el, key, label){
-  const src = IMG[key];
+function fillImg(el, file, varName){
   el.innerHTML = "";
-  if(!src){ el.innerHTML = `<div class="ph"><div>IMG<small>${label||key}</small></div></div>`; return; }
+  const showPh = () => { el.innerHTML = `<div class="ph"><div>IMG<small>${varName}</small></div></div>`; };
+  if(!file){ showPh(); return; }
   const img = new Image();
-  img.alt = label || key; img.loading = "lazy";
-  img.onerror = () => { el.innerHTML = `<div class="ph"><div>IMG<small>${src}</small></div></div>`; };
-  img.src = src;
+  img.alt = varName; img.loading = "lazy";
+  img.onerror = showPh;
+  img.src = /^https?:\/\//.test(file) ? file : IMG_FOLDER + file;
   el.appendChild(img);
 }
 
@@ -359,16 +381,20 @@ function renderStatic(){
   document.querySelectorAll("[data-i18n]").forEach(el => { const v = t[el.dataset.i18n]; if(v) el.textContent = v; });
   document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === lang));
 
-  // ribbon
   const items = t.ribbon.map(s => `<span>★ ${s}</span>`).join("");
   document.getElementById("ribbon").innerHTML = items + items;
 
   // contacts
-  const ph = document.getElementById("c-phone");
-  ph.href = "tel:" + CONTACT.phone.replace(/[^\d+]/g,""); ph.querySelector("span").textContent = CONTACT.phone;
-  const tg = document.getElementById("c-tg"); tg.href = CONTACT.telegram; tg.querySelector("span").textContent = CONTACT.telegram.replace("https://","");
-  const ig = document.getElementById("c-ig"); ig.href = CONTACT.instagram; ig.querySelector("span").textContent = CONTACT.instagram.replace("https://","");
-  document.getElementById("c-addr").textContent = CONTACT.address[lang];
+  const digits = VIBER.replace(/\D/g,"");
+  const vb = document.getElementById("c-viber");
+  vb.href = "viber://chat?number=%2B" + digits;
+  vb.querySelector("span").textContent = VIBER;
+  const tg = document.getElementById("c-tg");
+  tg.href = TELEGRAM; tg.querySelector("span").textContent = TELEGRAM.replace(/^https?:\/\//,"");
+  const tt = document.getElementById("c-tt");
+  tt.href = TIKTOK; tt.querySelector("span").textContent = TIKTOK.replace(/^https?:\/\/(www\.)?/,"");
+  document.getElementById("f-tt").href = TIKTOK;
+  document.getElementById("c-addr").textContent = ADDRESS[lang];
 
   // categories
   const catsEl = document.getElementById("cats");
@@ -377,7 +403,7 @@ function renderStatic(){
     const b = document.createElement("button");
     b.className = "cat"; b.type = "button";
     b.innerHTML = `<div class="imgbox"></div><span>${t["cat_"+c]}</span>`;
-    fillImg(b.querySelector(".imgbox"), "cat_"+c, t["cat_"+c]);
+    fillImg(b.querySelector(".imgbox"), CAT_IMAGES[c][0], CAT_IMAGES[c][1]);
     b.onclick = () => { activeCat = c; renderProducts(); document.getElementById("products").scrollIntoView({behavior:"smooth"}); };
     catsEl.appendChild(b);
   });
@@ -404,13 +430,13 @@ function renderProducts(){
     el.className = "card";
     el.innerHTML = `<div class="imgbox"></div>
       <div class="body"><h3>${p[lang]}</h3>
-        <div class="row"><span class="price">${p.price} ${t.currency}</span>
-        <a class="buy" href="#contacts">${t.buy}</a></div></div>`;
-    fillImg(el.querySelector(".imgbox"), p.id, p[lang]);
+        <div class="row"><span class="price">${p.price} ${CURRENCY}</span>
+        <a class="view" href="#contacts">${t.view}</a></div></div>`;
+    fillImg(el.querySelector(".imgbox"), p.img, p.var);
     grid.appendChild(el);
   });
   document.querySelectorAll("#filters button").forEach((b,i) => {
-    const key = ["all",...CATS][i]; b.setAttribute("aria-pressed", key === activeCat);
+    b.setAttribute("aria-pressed", ["all",...CATS][i] === activeCat);
   });
 }
 
@@ -421,10 +447,12 @@ function setLang(l){
 }
 
 document.querySelectorAll(".lang button").forEach(b => b.onclick = () => setLang(b.dataset.lang));
-document.querySelectorAll("[data-img]").forEach(el => fillImg(el, el.dataset.img));
+document.querySelectorAll("[data-single]").forEach(el => {
+  const [file, name] = SINGLE_IMAGES[el.dataset.single];
+  fillImg(el, file, name);
+});
 document.getElementById("year").textContent = new Date().getFullYear();
 
-/* Default — українська. Agar foydalanuvchi avval til tanlagan bo'lsa, o'shani eslaydi */
 let saved = null;
 try{ saved = localStorage.getItem("lang"); }catch(e){}
 setLang(T[saved] ? saved : "ua");
